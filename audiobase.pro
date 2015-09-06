@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += src/main.cpp \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/Audio/IAudioInterface.cpp
 
-HEADERS  += src/mainwindow.h
+HEADERS  += src/mainwindow.h \
+    src/Audio/IAudioInterface.h
 
 FORMS    += src/ui/mainwindow.ui

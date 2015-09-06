@@ -10,10 +10,50 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Audiobase</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QMdiArea" name="mdiArea">
+      <property name="background">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>32</red>
+         <green>46</green>
+         <blue>59</blue>
+        </color>
+       </brush>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -27,24 +67,238 @@
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuImport">
+     <property name="title">
+      <string>Import</string>
+     </property>
+     <addaction name="actionAudiofile"/>
+     <addaction name="actionAudio_CD"/>
+     <addaction name="actionVideofile"/>
+     <addaction name="actionAudio_from_videofile"/>
+     <addaction name="actionMIDI_file"/>
+     <addaction name="actionTempo_track"/>
+     <addaction name="actionMusicXML"/>
+    </widget>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export</string>
+     </property>
+     <addaction name="actionMIDI_file_2"/>
+     <addaction name="actionMIDI_loop"/>
+     <addaction name="actionAudio_Mixdown"/>
+     <addaction name="actionSelected_tracks"/>
+     <addaction name="actionTempo_track_2"/>
+     <addaction name="actionNotation"/>
+     <addaction name="actionMusicXML_2"/>
+    </widget>
     <addaction name="actionNew_Project"/>
     <addaction name="actionNew_Library"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionOpen_Library"/>
+    <addaction name="actionClose"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_as"/>
+    <addaction name="actionCreate_Backup"/>
+    <addaction name="actionSave_as_template"/>
+    <addaction name="actionSave_library"/>
+    <addaction name="separator"/>
+    <addaction name="actionSetup_page"/>
+    <addaction name="actionPrint"/>
+    <addaction name="separator"/>
+    <addaction name="menuImport"/>
+    <addaction name="menuExport"/>
+    <addaction name="actionCleanup"/>
+    <addaction name="separator"/>
+    <addaction name="actionProgram_settings"/>
+    <addaction name="actionKey_setup"/>
+    <addaction name="separator"/>
+    <addaction name="actionProjects"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
+    <widget class="QMenu" name="menuRange">
+     <property name="title">
+      <string>Range</string>
+     </property>
+     <addaction name="actionCopy_Range"/>
+     <addaction name="actionCut_time"/>
+     <addaction name="actionDelete_time"/>
+     <addaction name="actionPaste_time"/>
+     <addaction name="actionPaste_time_at_Origin"/>
+     <addaction name="actionSeparate"/>
+     <addaction name="actionRelease"/>
+     <addaction name="actionInsert_silence"/>
+    </widget>
+    <widget class="QMenu" name="menuSelect">
+     <property name="title">
+      <string>Select</string>
+     </property>
+     <addaction name="actionAll"/>
+     <addaction name="actionNone"/>
+     <addaction name="actionInvert"/>
+     <addaction name="actionIn_Loop"/>
+     <addaction name="actionOrigin_to_Cursor"/>
+     <addaction name="actionCursor_to_End"/>
+     <addaction name="actionSame_pitch_all_octaves"/>
+     <addaction name="actionSame_pitch_same_octave"/>
+     <addaction name="actionSelect_controllers_in_Sheet_area"/>
+     <addaction name="actionAll_on_selected_tracks"/>
+     <addaction name="actionSelect_Event"/>
+    </widget>
+    <widget class="QMenu" name="menuMove_to">
+     <property name="title">
+      <string>Move to</string>
+     </property>
+     <addaction name="actionCursor"/>
+     <addaction name="actionOrigin_Time"/>
+     <addaction name="actionFront"/>
+     <addaction name="actionBack"/>
+    </widget>
+    <widget class="QMenu" name="menuZoom">
+     <property name="title">
+      <string>Zoom</string>
+     </property>
+     <addaction name="actionEnlarge"/>
+     <addaction name="actionShrink"/>
+     <addaction name="actionFull_Window"/>
+     <addaction name="actionFull_selection"/>
+     <addaction name="actionEnlarge_Selection_horiz"/>
+     <addaction name="actionFull_Event"/>
+     <addaction name="separator"/>
+     <addaction name="actionEnlarge_vertical"/>
+     <addaction name="actionShrink_vertical"/>
+     <addaction name="actionEnlarge_track"/>
+     <addaction name="actionShrink_track"/>
+     <addaction name="actionEnlarge_selected_track"/>
+     <addaction name="separator"/>
+     <addaction name="actionUndo_Zoom"/>
+     <addaction name="actionRestore_Zoom"/>
+    </widget>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRestore"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionPasteAtOrigin"/>
+    <addaction name="actionDelete"/>
+    <addaction name="actionSplit_at_Cursor"/>
+    <addaction name="actionSplit_loop"/>
+    <addaction name="menuRange"/>
+    <addaction name="actionSet_Timecode_at_Cursor"/>
+    <addaction name="separator"/>
+    <addaction name="menuSelect"/>
+    <addaction name="separator"/>
+    <addaction name="actionDuplicate"/>
+    <addaction name="actionRepeat"/>
+    <addaction name="actionFill_Loop"/>
+    <addaction name="menuMove_to"/>
+    <addaction name="actionGroup"/>
+    <addaction name="actionUngroup"/>
+    <addaction name="actionLock"/>
+    <addaction name="actionUnlock"/>
+    <addaction name="actionMute"/>
+    <addaction name="actionUnmute"/>
+    <addaction name="separator"/>
+    <addaction name="actionAutomation_follows_Events"/>
+    <addaction name="actionAuto_Select_Events_under_Cursor"/>
+    <addaction name="actionEnlarge_Selected_Track"/>
+    <addaction name="separator"/>
+    <addaction name="menuZoom"/>
    </widget>
    <widget class="QMenu" name="menuProject">
     <property name="title">
      <string>Project</string>
     </property>
+    <widget class="QMenu" name="menuAdd_track">
+     <property name="title">
+      <string>Add track</string>
+     </property>
+     <addaction name="actionAudio"/>
+     <addaction name="actionInstrument"/>
+     <addaction name="actionMIDI"/>
+     <addaction name="separator"/>
+     <addaction name="actionArranger"/>
+     <addaction name="actionFX_Channel"/>
+     <addaction name="actionFolder"/>
+     <addaction name="actionGroup_Channel"/>
+     <addaction name="actionMarker"/>
+     <addaction name="actionRuler"/>
+     <addaction name="actionSignature"/>
+     <addaction name="actionTempo"/>
+     <addaction name="actionTranspose"/>
+     <addaction name="actionChords"/>
+     <addaction name="actionVideo"/>
+    </widget>
+    <addaction name="menuAdd_track"/>
+    <addaction name="separator"/>
+    <addaction name="actionDuplicate_Tracks"/>
+    <addaction name="actionRemove_Selected_Tracks"/>
+    <addaction name="actionRemove_Empty_Tracks"/>
+    <addaction name="separator"/>
+    <addaction name="actionPool"/>
+    <addaction name="actionMarkers"/>
+    <addaction name="actionTempo_Track"/>
+    <addaction name="actionBrowser"/>
+    <addaction name="actionAutomation_Panel"/>
+    <addaction name="actionBeat_Calculator"/>
+    <addaction name="separator"/>
+    <addaction name="actionProject_Setup"/>
+    <addaction name="actionAuto_Fade_Settings"/>
    </widget>
    <widget class="QMenu" name="menuAudio">
     <property name="title">
      <string>Audio</string>
     </property>
+    <widget class="QMenu" name="menuProcess">
+     <property name="title">
+      <string>Process</string>
+     </property>
+     <addaction name="actionEnvelope"/>
+     <addaction name="actionFade_In"/>
+     <addaction name="actionFade_Out"/>
+     <addaction name="actionGain"/>
+     <addaction name="actionMerge_Clipboard"/>
+     <addaction name="actionNoise_Gate"/>
+     <addaction name="actionNormalize"/>
+     <addaction name="actionPhase_Reverse"/>
+     <addaction name="actionPtich_Shift"/>
+     <addaction name="actionRemove_DC_Offset"/>
+     <addaction name="actionResample"/>
+     <addaction name="actionInvert_2"/>
+     <addaction name="actionSilence"/>
+     <addaction name="actionStereo_Modification"/>
+     <addaction name="actionTime_Stretch"/>
+    </widget>
+    <addaction name="menuProcess"/>
+    <addaction name="actionPlug_ins"/>
+    <addaction name="actionSpectrum_Analyser"/>
+    <addaction name="actionStatistics"/>
+    <addaction name="actionHitpoints"/>
+    <addaction name="actionRealtime_Processing"/>
+    <addaction name="actionAdvanced"/>
+    <addaction name="actionEvent_to_Part"/>
+    <addaction name="actionDissolve_Part"/>
+    <addaction name="actionSnap_Point_to_Cursor"/>
+    <addaction name="actionBounce_Selection"/>
+    <addaction name="actionFind_Selected_in_Pool"/>
+    <addaction name="actionUpdate_Orogin"/>
+    <addaction name="separator"/>
+    <addaction name="actionCrossfade"/>
+    <addaction name="actionRemove_Fades"/>
+    <addaction name="actionOpen_Fade_Editor_s"/>
+    <addaction name="actionAdjust_Fades_to_Range"/>
+    <addaction name="actionFade_In_to_Cursor"/>
+    <addaction name="actionFade_Out_to_Cursor"/>
+    <addaction name="actionRemove_Volume_Curve"/>
+    <addaction name="separator"/>
+    <addaction name="actionAudioprocess_list"/>
+    <addaction name="actionDefine_Audioprocesses"/>
    </widget>
    <widget class="QMenu" name="menuMIDI">
     <property name="title">
@@ -70,21 +324,49 @@
     <property name="title">
      <string>Devices</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuWorkspaces">
-    <property name="title">
-     <string>Workspaces</string>
-    </property>
+    <addaction name="actionControl_Room_Mixer"/>
+    <addaction name="actionControl_Room_Overview"/>
+    <addaction name="actionMIDI_Device_Manager"/>
+    <addaction name="actionMMC_Master"/>
+    <addaction name="actionMixConsole"/>
+    <addaction name="actionPlug_in_Information"/>
+    <addaction name="actionRecord_Time_Max"/>
+    <addaction name="actionTime_Display"/>
+    <addaction name="actionVST_Connections"/>
+    <addaction name="actionVST_Instruments"/>
+    <addaction name="actionVST_performance"/>
+    <addaction name="actionVideo_Player"/>
+    <addaction name="actionVirtual_Keyboard"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_Panel"/>
+    <addaction name="separator"/>
+    <addaction name="actionDevice_Setup"/>
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
      <string>Window</string>
     </property>
+    <addaction name="actionMinimize"/>
+    <addaction name="actionZoom_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose_All"/>
+    <addaction name="actionMinimize_All"/>
+    <addaction name="actionRestore_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionWorkspaces"/>
+    <addaction name="actionWindows"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionDocumentation"/>
+    <addaction name="separator"/>
+    <addaction name="actionAudiobase_Website"/>
+    <addaction name="separator"/>
+    <addaction name="actionLicenses_and_Copyrights"/>
+    <addaction name="actionAbout_Audiobase"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -95,22 +377,15 @@
    <addaction name="menuMedia"/>
    <addaction name="menuTransport"/>
    <addaction name="menuDevices"/>
-   <addaction name="menuWorkspaces"/>
    <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew_Project">
    <property name="text">
     <string>New Project...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionNew_Library">
@@ -121,6 +396,900 @@
   <action name="actionOpen">
    <property name="text">
     <string>Open...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionOpen_Library">
+   <property name="text">
+    <string>Open Library...</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSave_as">
+   <property name="text">
+    <string>Save as...</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+  </action>
+  <action name="actionCreate_Backup">
+   <property name="text">
+    <string>Create Backup...</string>
+   </property>
+  </action>
+  <action name="actionSave_as_template">
+   <property name="text">
+    <string>Save as template...</string>
+   </property>
+  </action>
+  <action name="actionSave_library">
+   <property name="text">
+    <string>Save library...</string>
+   </property>
+  </action>
+  <action name="actionSetup_page">
+   <property name="text">
+    <string>Setup page...</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="text">
+    <string>Print...</string>
+   </property>
+  </action>
+  <action name="actionCleanup">
+   <property name="text">
+    <string>Cleanup...</string>
+   </property>
+  </action>
+  <action name="actionProgram_settings">
+   <property name="text">
+    <string>Program settings...</string>
+   </property>
+  </action>
+  <action name="actionKey_setup">
+   <property name="text">
+    <string>Key setup...</string>
+   </property>
+  </action>
+  <action name="actionProjects">
+   <property name="text">
+    <string>Projects</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAudiofile">
+   <property name="text">
+    <string>Audiofile...</string>
+   </property>
+  </action>
+  <action name="actionAudio_CD">
+   <property name="text">
+    <string>Audio-CD...</string>
+   </property>
+  </action>
+  <action name="actionVideofile">
+   <property name="text">
+    <string>Videofile...</string>
+   </property>
+  </action>
+  <action name="actionAudio_from_videofile">
+   <property name="text">
+    <string>Audio from videofile...</string>
+   </property>
+  </action>
+  <action name="actionMIDI_file">
+   <property name="text">
+    <string>MIDI-file...</string>
+   </property>
+  </action>
+  <action name="actionTempo_track">
+   <property name="text">
+    <string>Tempo track...</string>
+   </property>
+  </action>
+  <action name="actionMusicXML">
+   <property name="text">
+    <string>MusicXML...</string>
+   </property>
+  </action>
+  <action name="actionMIDI_file_2">
+   <property name="text">
+    <string>MIDI-file...</string>
+   </property>
+  </action>
+  <action name="actionMIDI_loop">
+   <property name="text">
+    <string>MIDI-loop...</string>
+   </property>
+  </action>
+  <action name="actionAudio_Mixdown">
+   <property name="text">
+    <string>Audio-Mixdown...</string>
+   </property>
+  </action>
+  <action name="actionSelected_tracks">
+   <property name="text">
+    <string>Selected tracks...</string>
+   </property>
+  </action>
+  <action name="actionTempo_track_2">
+   <property name="text">
+    <string>Tempo track...</string>
+   </property>
+  </action>
+  <action name="actionNotation">
+   <property name="text">
+    <string>Notation...</string>
+   </property>
+  </action>
+  <action name="actionMusicXML_2">
+   <property name="text">
+    <string>MusicXML...</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="text">
+    <string>Undo</string>
+   </property>
+  </action>
+  <action name="actionRestore">
+   <property name="text">
+    <string>Restore</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionPasteAtOrigin">
+   <property name="text">
+    <string>Paste at Origin</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionSplit_at_Cursor">
+   <property name="text">
+    <string>Split at Cursor</string>
+   </property>
+  </action>
+  <action name="actionSplit_loop">
+   <property name="text">
+    <string>Split loop</string>
+   </property>
+  </action>
+  <action name="actionDuplicate">
+   <property name="text">
+    <string>Duplicate</string>
+   </property>
+  </action>
+  <action name="actionRepeat">
+   <property name="text">
+    <string>Repeat...</string>
+   </property>
+  </action>
+  <action name="actionFill_Loop">
+   <property name="text">
+    <string>Fill Loop</string>
+   </property>
+  </action>
+  <action name="actionGroup">
+   <property name="text">
+    <string>Group</string>
+   </property>
+  </action>
+  <action name="actionUngroup">
+   <property name="text">
+    <string>Ungroup</string>
+   </property>
+  </action>
+  <action name="actionLock">
+   <property name="text">
+    <string>Lock...</string>
+   </property>
+  </action>
+  <action name="actionUnlock">
+   <property name="text">
+    <string>Unlock</string>
+   </property>
+  </action>
+  <action name="actionMute">
+   <property name="text">
+    <string>Mute</string>
+   </property>
+  </action>
+  <action name="actionUnmute">
+   <property name="text">
+    <string>Unmute</string>
+   </property>
+  </action>
+  <action name="actionAutomation_follows_Events">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Automation follows Events</string>
+   </property>
+  </action>
+  <action name="actionAuto_Select_Events_under_Cursor">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Auto Select Events under Cursor</string>
+   </property>
+  </action>
+  <action name="actionEnlarge_Selected_Track">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Enlarge Selected Track</string>
+   </property>
+  </action>
+  <action name="actionCopy_Range">
+   <property name="text">
+    <string>Copy Range</string>
+   </property>
+  </action>
+  <action name="actionCut_time">
+   <property name="text">
+    <string>Cut time</string>
+   </property>
+  </action>
+  <action name="actionDelete_time">
+   <property name="text">
+    <string>Delete time</string>
+   </property>
+  </action>
+  <action name="actionPaste_time">
+   <property name="text">
+    <string>Paste time</string>
+   </property>
+  </action>
+  <action name="actionPaste_time_at_Origin">
+   <property name="text">
+    <string>Paste time at Origin</string>
+   </property>
+  </action>
+  <action name="actionSeparate">
+   <property name="text">
+    <string>Separate</string>
+   </property>
+  </action>
+  <action name="actionRelease">
+   <property name="text">
+    <string>Release</string>
+   </property>
+  </action>
+  <action name="actionInsert_silence">
+   <property name="text">
+    <string>Insert silence</string>
+   </property>
+  </action>
+  <action name="actionAll">
+   <property name="text">
+    <string>All</string>
+   </property>
+  </action>
+  <action name="actionNone">
+   <property name="text">
+    <string>None</string>
+   </property>
+  </action>
+  <action name="actionInvert">
+   <property name="text">
+    <string>Invert</string>
+   </property>
+  </action>
+  <action name="actionIn_Loop">
+   <property name="text">
+    <string>In Loop</string>
+   </property>
+  </action>
+  <action name="actionOrigin_to_Cursor">
+   <property name="text">
+    <string>Origin to Cursor</string>
+   </property>
+  </action>
+  <action name="actionCursor_to_End">
+   <property name="text">
+    <string>Cursor to End</string>
+   </property>
+  </action>
+  <action name="actionSame_pitch_all_octaves">
+   <property name="text">
+    <string>Same pitch - all octaves</string>
+   </property>
+  </action>
+  <action name="actionSame_pitch_same_octave">
+   <property name="text">
+    <string>Same pitch - same octave</string>
+   </property>
+  </action>
+  <action name="actionSelect_controllers_in_Sheet_area">
+   <property name="text">
+    <string>Select controllers in Sheet area</string>
+   </property>
+  </action>
+  <action name="actionAll_on_selected_tracks">
+   <property name="text">
+    <string>All on selected tracks</string>
+   </property>
+  </action>
+  <action name="actionSelect_Event">
+   <property name="text">
+    <string>Select Event</string>
+   </property>
+  </action>
+  <action name="actionCursor">
+   <property name="text">
+    <string>Cursor</string>
+   </property>
+  </action>
+  <action name="actionOrigin_Time">
+   <property name="text">
+    <string>Origin Time</string>
+   </property>
+  </action>
+  <action name="actionFront">
+   <property name="text">
+    <string>Front</string>
+   </property>
+  </action>
+  <action name="actionBack">
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </action>
+  <action name="actionEnlarge">
+   <property name="text">
+    <string>Enlarge</string>
+   </property>
+  </action>
+  <action name="actionShrink">
+   <property name="text">
+    <string>Shrink</string>
+   </property>
+  </action>
+  <action name="actionFull_Window">
+   <property name="text">
+    <string>Full Window</string>
+   </property>
+  </action>
+  <action name="actionFull_selection">
+   <property name="text">
+    <string>Full selection</string>
+   </property>
+  </action>
+  <action name="actionEnlarge_Selection_horiz">
+   <property name="text">
+    <string>Enlarge Selection (horiz.)</string>
+   </property>
+  </action>
+  <action name="actionFull_Event">
+   <property name="text">
+    <string>Full Event</string>
+   </property>
+  </action>
+  <action name="actionEnlarge_vertical">
+   <property name="text">
+    <string>Enlarge vertical</string>
+   </property>
+  </action>
+  <action name="actionShrink_vertical">
+   <property name="text">
+    <string>Shrink vertical</string>
+   </property>
+  </action>
+  <action name="actionEnlarge_track">
+   <property name="text">
+    <string>Enlarge track</string>
+   </property>
+  </action>
+  <action name="actionShrink_track">
+   <property name="text">
+    <string>Shrink track</string>
+   </property>
+  </action>
+  <action name="actionEnlarge_selected_track">
+   <property name="text">
+    <string>Enlarge selected track</string>
+   </property>
+  </action>
+  <action name="actionUndo_Zoom">
+   <property name="text">
+    <string>Undo Zoom</string>
+   </property>
+  </action>
+  <action name="actionRestore_Zoom">
+   <property name="text">
+    <string>Restore Zoom</string>
+   </property>
+  </action>
+  <action name="actionDuplicate_Tracks">
+   <property name="text">
+    <string>Duplicate Tracks</string>
+   </property>
+  </action>
+  <action name="actionRemove_Selected_Tracks">
+   <property name="text">
+    <string>Remove Selected Tracks</string>
+   </property>
+  </action>
+  <action name="actionRemove_Empty_Tracks">
+   <property name="text">
+    <string>Remove Empty Tracks</string>
+   </property>
+  </action>
+  <action name="actionTrack_Folding">
+   <property name="text">
+    <string>Track Folding</string>
+   </property>
+  </action>
+  <action name="actionPool">
+   <property name="text">
+    <string>Pool</string>
+   </property>
+  </action>
+  <action name="actionMarkers">
+   <property name="text">
+    <string>Markers</string>
+   </property>
+  </action>
+  <action name="actionTempo_Track">
+   <property name="text">
+    <string>Tempo Track</string>
+   </property>
+  </action>
+  <action name="actionBrowser">
+   <property name="text">
+    <string>Browser</string>
+   </property>
+  </action>
+  <action name="actionAutomation_Panel">
+   <property name="text">
+    <string>Automation Panel</string>
+   </property>
+  </action>
+  <action name="actionBeat_Calculator">
+   <property name="text">
+    <string>Beat Calculator</string>
+   </property>
+  </action>
+  <action name="actionSet_Timecode_at_Cursor">
+   <property name="text">
+    <string>Set Timecode at Cursor</string>
+   </property>
+  </action>
+  <action name="actionProject_Setup">
+   <property name="text">
+    <string>Project Setup...</string>
+   </property>
+  </action>
+  <action name="actionAuto_Fade_Settings">
+   <property name="text">
+    <string>Auto Fade Settings...</string>
+   </property>
+  </action>
+  <action name="actionAudio">
+   <property name="text">
+    <string>Audio</string>
+   </property>
+  </action>
+  <action name="actionInstrument">
+   <property name="text">
+    <string>Instrument</string>
+   </property>
+  </action>
+  <action name="actionMIDI">
+   <property name="text">
+    <string>MIDI</string>
+   </property>
+  </action>
+  <action name="actionArranger">
+   <property name="text">
+    <string>Arranger</string>
+   </property>
+  </action>
+  <action name="actionFX_Channel">
+   <property name="text">
+    <string>FX Channel</string>
+   </property>
+  </action>
+  <action name="actionFolder">
+   <property name="text">
+    <string>Folder</string>
+   </property>
+  </action>
+  <action name="actionGroup_Channel">
+   <property name="text">
+    <string>Group Channel</string>
+   </property>
+  </action>
+  <action name="actionMarker">
+   <property name="text">
+    <string>Marker</string>
+   </property>
+  </action>
+  <action name="actionRuler">
+   <property name="text">
+    <string>Ruler</string>
+   </property>
+  </action>
+  <action name="actionSignature">
+   <property name="text">
+    <string>Signature</string>
+   </property>
+  </action>
+  <action name="actionTempo">
+   <property name="text">
+    <string>Tempo</string>
+   </property>
+  </action>
+  <action name="actionTranspose">
+   <property name="text">
+    <string>Transpose</string>
+   </property>
+  </action>
+  <action name="actionVideo">
+   <property name="text">
+    <string>Video</string>
+   </property>
+  </action>
+  <action name="actionChords">
+   <property name="text">
+    <string>Chords</string>
+   </property>
+  </action>
+  <action name="actionPlug_ins">
+   <property name="text">
+    <string>Plug-ins</string>
+   </property>
+  </action>
+  <action name="actionSpectrum_Analyser">
+   <property name="text">
+    <string>Spectrum Analyser</string>
+   </property>
+  </action>
+  <action name="actionStatistics">
+   <property name="text">
+    <string>Statistics</string>
+   </property>
+  </action>
+  <action name="actionHitpoints">
+   <property name="text">
+    <string>Hitpoints</string>
+   </property>
+  </action>
+  <action name="actionRealtime_Processing">
+   <property name="text">
+    <string>Realtime Processing</string>
+   </property>
+  </action>
+  <action name="actionAdvanced">
+   <property name="text">
+    <string>Advanced</string>
+   </property>
+  </action>
+  <action name="actionEvent_to_Part">
+   <property name="text">
+    <string>Events to Part</string>
+   </property>
+  </action>
+  <action name="actionDissolve_Part">
+   <property name="text">
+    <string>Dissolve Part</string>
+   </property>
+  </action>
+  <action name="actionSnap_Point_to_Cursor">
+   <property name="text">
+    <string>Snap Point to Cursor</string>
+   </property>
+  </action>
+  <action name="actionBounce_Selection">
+   <property name="text">
+    <string>Bounce Selection</string>
+   </property>
+  </action>
+  <action name="actionFind_Selected_in_Pool">
+   <property name="text">
+    <string>Find Selected in Pool</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionUpdate_Orogin">
+   <property name="text">
+    <string>Update Orogin</string>
+   </property>
+  </action>
+  <action name="actionCrossfade">
+   <property name="text">
+    <string>Crossfade</string>
+   </property>
+  </action>
+  <action name="actionRemove_Fades">
+   <property name="text">
+    <string>Remove Fades</string>
+   </property>
+  </action>
+  <action name="actionOpen_Fade_Editor_s">
+   <property name="text">
+    <string>Open Fade Editor(s)</string>
+   </property>
+  </action>
+  <action name="actionAdjust_Fades_to_Range">
+   <property name="text">
+    <string>Adjust Fades to Range</string>
+   </property>
+  </action>
+  <action name="actionFade_In_to_Cursor">
+   <property name="text">
+    <string>Fade In to Cursor</string>
+   </property>
+  </action>
+  <action name="actionFade_Out_to_Cursor">
+   <property name="text">
+    <string>Fade Out to Cursor</string>
+   </property>
+  </action>
+  <action name="actionRemove_Volume_Curve">
+   <property name="text">
+    <string>Remove Volume Curve</string>
+   </property>
+  </action>
+  <action name="actionAudioprocess_list">
+   <property name="text">
+    <string>Audioprocess list...</string>
+   </property>
+  </action>
+  <action name="actionDefine_Audioprocesses">
+   <property name="text">
+    <string>Define Audioprocesses</string>
+   </property>
+  </action>
+  <action name="actionEnvelope">
+   <property name="text">
+    <string>Envelope</string>
+   </property>
+  </action>
+  <action name="actionFade_In">
+   <property name="text">
+    <string>Fade In</string>
+   </property>
+  </action>
+  <action name="actionFade_Out">
+   <property name="text">
+    <string>Fade Out</string>
+   </property>
+  </action>
+  <action name="actionGain">
+   <property name="text">
+    <string>Gain</string>
+   </property>
+  </action>
+  <action name="actionMerge_Clipboard">
+   <property name="text">
+    <string>Merge Clipboard</string>
+   </property>
+  </action>
+  <action name="actionNoise_Gate">
+   <property name="text">
+    <string>Noise Gate</string>
+   </property>
+  </action>
+  <action name="actionNormalize">
+   <property name="text">
+    <string>Normalize</string>
+   </property>
+  </action>
+  <action name="actionPhase_Reverse">
+   <property name="text">
+    <string>Phase Reverse</string>
+   </property>
+  </action>
+  <action name="actionPtich_Shift">
+   <property name="text">
+    <string>Ptich Shift</string>
+   </property>
+  </action>
+  <action name="actionRemove_DC_Offset">
+   <property name="text">
+    <string>Remove DC-Offset</string>
+   </property>
+  </action>
+  <action name="actionResample">
+   <property name="text">
+    <string>Resample</string>
+   </property>
+  </action>
+  <action name="actionInvert_2">
+   <property name="text">
+    <string>Invert</string>
+   </property>
+  </action>
+  <action name="actionSilence">
+   <property name="text">
+    <string>Silence</string>
+   </property>
+  </action>
+  <action name="actionStereo_Modification">
+   <property name="text">
+    <string>Stereo-Modification</string>
+   </property>
+  </action>
+  <action name="actionTime_Stretch">
+   <property name="text">
+    <string>Time-Stretch</string>
+   </property>
+  </action>
+  <action name="actionControl_Room_Mixer">
+   <property name="text">
+    <string>Control Room Mixer</string>
+   </property>
+  </action>
+  <action name="actionControl_Room_Overview">
+   <property name="text">
+    <string>Control Room Overview</string>
+   </property>
+  </action>
+  <action name="actionMIDI_Device_Manager">
+   <property name="text">
+    <string>MIDI Device Manager</string>
+   </property>
+  </action>
+  <action name="actionMMC_Master">
+   <property name="text">
+    <string>MMC Master</string>
+   </property>
+  </action>
+  <action name="actionMixConsole">
+   <property name="text">
+    <string>MixConsole</string>
+   </property>
+  </action>
+  <action name="actionPlug_in_Information">
+   <property name="text">
+    <string>Plug-in Information</string>
+   </property>
+  </action>
+  <action name="actionRecord_Time_Max">
+   <property name="text">
+    <string>Record Time Max</string>
+   </property>
+  </action>
+  <action name="actionTime_Display">
+   <property name="text">
+    <string>Time Display</string>
+   </property>
+  </action>
+  <action name="actionVST_Connections">
+   <property name="text">
+    <string>VST Connections</string>
+   </property>
+  </action>
+  <action name="actionVST_Instruments">
+   <property name="text">
+    <string>VST Instruments</string>
+   </property>
+  </action>
+  <action name="actionVST_performance">
+   <property name="text">
+    <string>VST performance</string>
+   </property>
+  </action>
+  <action name="actionVideo_Player">
+   <property name="text">
+    <string>Video Player</string>
+   </property>
+  </action>
+  <action name="actionVirtual_Keyboard">
+   <property name="text">
+    <string>Virtual Keyboard</string>
+   </property>
+  </action>
+  <action name="actionShow_Panel">
+   <property name="text">
+    <string>Show Panel</string>
+   </property>
+  </action>
+  <action name="actionDevice_Setup">
+   <property name="text">
+    <string>Device Setup...</string>
+   </property>
+  </action>
+  <action name="actionMinimize">
+   <property name="text">
+    <string>Minimize</string>
+   </property>
+  </action>
+  <action name="actionZoom_2">
+   <property name="text">
+    <string>Zoom</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="text">
+    <string>Close All</string>
+   </property>
+  </action>
+  <action name="actionMinimize_All">
+   <property name="text">
+    <string>Minimize All</string>
+   </property>
+  </action>
+  <action name="actionRestore_All">
+   <property name="text">
+    <string>Restore All</string>
+   </property>
+  </action>
+  <action name="actionWorkspaces">
+   <property name="text">
+    <string>Workspaces</string>
+   </property>
+  </action>
+  <action name="actionWindows">
+   <property name="text">
+    <string>Windows...</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionAudiobase_Website">
+   <property name="text">
+    <string>Audiobase Website</string>
+   </property>
+  </action>
+  <action name="actionLicenses_and_Copyrights">
+   <property name="text">
+    <string>Licenses and Copyrights</string>
+   </property>
+  </action>
+  <action name="actionAbout_Audiobase">
+   <property name="text">
+    <string>About Audiobase...</string>
    </property>
   </action>
  </widget>
