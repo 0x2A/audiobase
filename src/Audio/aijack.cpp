@@ -52,12 +52,12 @@ namespace Audio
 
     int AiJack::BufferSize()
     {
-        return m_Client.bufferSize();
+        return m_BufferSize;
     }
 
     int AiJack::SampleRate()
     {
-        return m_Client.sampleRate();
+        return m_SampleRate;
     }
 
 
@@ -92,7 +92,8 @@ namespace Audio
 
     void AiJack::onServerShutdown()
     {
-
+        qDebug() << "Server is shutting down!";
+        //TODO: handle the server shutdown and do necessary stuff
     }
 
     void AiJack::onSampleRateChanged(int sampleRate)

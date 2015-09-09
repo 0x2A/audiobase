@@ -16,6 +16,7 @@ namespace Audio
         int GetData(float *dataArray, int numberElements);
         void Write(float *dataArray, int numberElements);
         void SetBufferSize(int size = 1024);
+        void ClearBuffer();
 
         const QtJack::AudioRingBuffer& GetAudioRingBuffer();
 
@@ -25,6 +26,7 @@ namespace Audio
 
     private:
         QtJack::AudioRingBuffer m_Buffer;
+
     };
 }
 #endif // JACKCHANNEL_H

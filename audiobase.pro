@@ -21,14 +21,20 @@ SOURCES += src/main.cpp \
     src/Audio/IAudioInterface.cpp \
     src/Audio/audioengine.cpp \
     src/Audio/channel.cpp \
-    src/Audio/jackchannel.cpp
+    src/Audio/jackchannel.cpp \
+    src/system/track.cpp \
+    src/system/audiotrack.cpp \
+    src/system/miditrack.cpp
 
 HEADERS  += src/mainwindow.h \
     src/Audio/IAudioInterface.h \
     src/Audio/audioengine.h \
     src/Audio/aitypes.h \
     src/Audio/channel.h \
-    src/Audio/jackchannel.h
+    src/Audio/jackchannel.h \
+    src/system/track.h \
+    src/system/audiotrack.h \
+    src/system/miditrack.h
 
 FORMS    += src/ui/mainwindow.ui
 

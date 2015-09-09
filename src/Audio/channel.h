@@ -16,6 +16,7 @@ namespace Audio
         virtual int GetData(float *dataArray) = 0;
         virtual int GetData(float *dataArray, int numberElements) = 0;
         virtual void Write(float *dataArray, int numberElements) = 0;
+        virtual void ClearBuffer() = 0;
 
     Q_SIGNALS:
 

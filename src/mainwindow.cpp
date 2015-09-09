@@ -56,6 +56,8 @@ void MainWindow::on_actionOpen_triggered()
     QString fileName = QFileDialog::getOpenFileName(this, "Open mp3 file", QString(), "*.mp3");
     if(!fileName.isEmpty())
     {
+           chnl_l->ClearBuffer();
+           chnl_r->ClearBuffer();
            _audioDecoder.setSourceFilename(fileName);
            _audioDecoder.start();
     }

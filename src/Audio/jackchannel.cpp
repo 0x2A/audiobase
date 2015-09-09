@@ -32,6 +32,11 @@ namespace Audio
         m_Buffer = QtJack::AudioRingBuffer(size);
     }
 
+    void JackChannel::ClearBuffer()
+    {
+        m_Buffer.reset();
+    }
+
     const QtJack::AudioRingBuffer &JackChannel::GetAudioRingBuffer()
     {
         /*int samples = m_AudioEngine->SampleRate();
