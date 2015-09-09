@@ -3,7 +3,10 @@
 #include "QMessageBox"
 #include <thread>
 #include <QFileDialog>
+#include <QSettings>
+#include "system/settings.h"
 
+using namespace System;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    System::Settings::Load();
+
+    LoadWindowProperties();
 
     //TESTCODE: Testing audio engine functionality with QAudioDecoder
     m_AudioEngine = new Audio::AudioEngine(Audio::InterfaceTypes::Jack);
@@ -40,13 +46,19 @@ MainWindow::MainWindow(QWidget *parent) :
     targetAudioFormat.setCodec("audio/x-raw");
     _audioDecoder.setAudioFormat(targetAudioFormat);
 
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete m_AudioEngine;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    SaveWindowProperties();
+
+    Settings::Destroy();
 }
 
 
@@ -61,6 +73,12 @@ void MainWindow::on_actionOpen_triggered()
            _audioDecoder.setSourceFilename(fileName);
            _audioDecoder.start();
     }
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+    //TODO: Check if there is anything to be saved
+    QApplication::quit();
 }
 
 //TESTCODE: Testing audio engine functionality with QAudioDecoder
@@ -107,4 +125,14 @@ void MainWindow::transferSamples()
         chnl_l->Write(left, frames);
         chnl_r->Write(right, frames);
     }
+}
+
+void MainWindow::LoadWindowProperties()
+{
+    restoreGeometry(Settings::GetValue(Settings::Section::UI, "MainWindowGeom").toByteArray());
+}
+
+void MainWindow::SaveWindowProperties()
+{
+    Settings::SetValue(Settings::Section::UI, "MainWindowGeom", saveGeometry());
 }

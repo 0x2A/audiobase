@@ -18,16 +18,25 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void closeEvent(QCloseEvent *event);
 
 public Q_SLOTS:
 
     void on_actionOpen_triggered();
+    void on_actionExit_triggered();
 
     //TESTCODE: Testing audio engine functionality with QAudioDecoder
     void decodingError(QAudioDecoder::Error error);
     void transferSamples();
 
 private:
+
+    //Loads window poperties like position and size from the config
+    void LoadWindowProperties();
+
+    //Saves window poperties like position and size to the config
+    void SaveWindowProperties();
+
     Ui::MainWindow *ui;
     Audio::AudioEngine *m_AudioEngine;
 

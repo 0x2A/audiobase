@@ -3,7 +3,7 @@
 
 #include "track.h"
 
-namespace System
+namespace Transport
 {
     class MidiTrack : public Track
     {

@@ -22,9 +22,10 @@ SOURCES += src/main.cpp \
     src/Audio/audioengine.cpp \
     src/Audio/channel.cpp \
     src/Audio/jackchannel.cpp \
-    src/system/track.cpp \
-    src/system/audiotrack.cpp \
-    src/system/miditrack.cpp
+    src/transport/track.cpp \
+    src/transport/audiotrack.cpp \
+    src/transport/miditrack.cpp \
+    src/system/settings.cpp
 
 HEADERS  += src/mainwindow.h \
     src/Audio/IAudioInterface.h \
@@ -32,9 +33,11 @@ HEADERS  += src/mainwindow.h \
     src/Audio/aitypes.h \
     src/Audio/channel.h \
     src/Audio/jackchannel.h \
-    src/system/track.h \
-    src/system/audiotrack.h \
-    src/system/miditrack.h
+    src/transport/track.h \
+    src/transport/audiotrack.h \
+    src/transport/miditrack.h \
+    src/system/settings.h \
+    src/common.h
 
 FORMS    += src/ui/mainwindow.ui
 

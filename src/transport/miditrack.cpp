@@ -1,6 +1,6 @@
 #include "miditrack.h"
 
-namespace System
+namespace Transport
 {
     MidiTrack::MidiTrack()
     {
